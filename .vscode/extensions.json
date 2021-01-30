@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "esbenp.prettier-vscode",
+    "firsttris.vscode-jest-runner",
+    "formulahendry.auto-rename-tag",
+    "Stepsize.tech-debt-tracker",
+    "tintinweb.solidity-metrics",
+    "kisstkondoros.vscode-codemetrics",
+    "pflannery.vscode-versionlens",
+    "richie5um2.vscode-statusbar-json-path",
+    "ban.spellright",
+    "natqe.reload",
+    "wix.vscode-import-cost",
+    "jacobcofman.changelog",
+    "mikestead.dotenv",
+    "herrmannplatz.npm-dependency-links",
+    "mkaufman.htmlhint",
+    "dbaeumer.vscode-eslint"
+  ]
+}

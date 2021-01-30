@@ -1,0 +1,26 @@
+{
+  "auto-rename-tag.activationOnLanguage": ["*"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.linkedEditing": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "jestrunner.jestCommand": "npx nx test --testPathPattern",
+  "jestrunner.runOptions": ["--runInBand"],
+  "jest.pathToJest": "npx nx affected:test --base=origin/master --onlyChanged",
+  "jest.autoEnable": false,
+  "jest.runAllTestsFirst": false,
+  "jest.enableCodeLens": true,
+  "jest.enableInlineErrorMessages": true,
+  "eslint.format.enable": false,
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "eslint.options": {
+    "extensions": [".js", ".ts", ".tsx", ".htm", ".html"]
+  },
+  "eslint.workingDirectories": ["./apps/*/", "./libs/*/", "./tools/*/"]
+}
