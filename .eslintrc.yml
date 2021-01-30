@@ -1,0 +1,164 @@
+root: true
+env:
+  es6: true
+  node: true
+  browser: true
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 2018
+  sourceType: module
+  project: ./tsconfig.*?.json
+  createDefaultProgram: true
+ignorePatterns:
+  - '**/*'
+plugins:
+  - '@nrwl/nx'
+  - '@typescript-eslint'
+  - eslint-comments
+  - 'no-loops'
+  - html
+  - jest
+overrides:
+  - files:
+      - '*.ts'
+      - '*.tsx'
+      - '*.js'
+      - '*.jsx'
+    rules:
+      '@nrwl/nx/enforce-module-boundaries':
+        - error
+        - enforceBuildableLibDependency: true
+          allow: []
+          depConstraints:
+            - sourceTag: '*'
+              onlyDependOnLibsWithTags:
+                - '*'
+  - files:
+      - '*.ts'
+      - '*.tsx'
+    extends:
+      - plugin:@nrwl/nx/typescript
+      - airbnb-typescript/base
+      - plugin:@typescript-eslint/recommended
+      - plugin:import/errors
+      - plugin:import/warnings
+      - plugin:import/typescript
+      - plugin:eslint-comments/recommended
+      - prettier
+      - prettier/@typescript-eslint
+    rules:
+      # core
+      no-console: 0
+      consistent-return: 0
+      quotes:
+        - error
+        - single
+        - avoidEscape: true
+          allowTemplateLiterals: true
+
+      # variables
+      no-unused-vars: 0
+
+      # best practices
+      no-unused-expressions: 0
+
+      # style
+      object-curly-newline: 0
+      lines-between-class-members: 0
+      implicit-arrow-linebreak: 0
+      arrow-body-style:
+        - error
+        - as-needed
+
+      # import
+      import/named: off
+      import/default: off
+      import/namespace: off
+      import/group-exports: off
+      import/no-unresolved: off
+      import/no-named-export: off
+      import/no-named-as-default: off
+      import/prefer-default-export: off
+      import/no-named-as-default-member: off
+      import/no-extraneous-dependencies:
+        - error
+        - packageDir: ./
+
+      import/first: error
+      import/no-amd: error
+      import/no-duplicates: error
+      import/no-self-import: error
+      import/no-absolute-path: error
+      import/no-named-default: error
+      import/no-default-export: error
+      import/no-mutable-exports: error
+      import/newline-after-import: error
+      import/order:
+        - error
+        - groups:
+            - builtin
+            - external
+            - internal
+          pathGroups:
+            - pattern: '@nestjs/**'
+              group: external
+              position: before
+            - pattern: '@poc/**'
+              group: external
+              position: before
+          newlines-between: never
+          alphabetize:
+            order: asc
+            caseInsensitive: false
+
+      # no-loops
+      no-loops/no-loops: 2
+
+      # comments
+      eslint-comments/disable-enable-pair: off
+
+      # typescript
+      '@typescript-eslint/explicit-member-accessibility': off
+      '@typescript-eslint/explicit-module-boundary-types': off
+      '@typescript-eslint/explicit-function-return-type': off
+      '@typescript-eslint/no-parameter-properties': off
+      '@typescript-eslint/naming-convention':
+        - error
+        - selector: variableLike
+          format:
+            - camelCase
+            - snake_case
+      '@typescript-eslint/lines-between-class-members': off
+      '@typescript-eslint/no-unused-expressions':
+        - error
+        - allowTernary: true
+
+  - files:
+      - '*.js'
+      - '*.jsx'
+    extends:
+      - plugin:@nrwl/nx/javascript
+    rules: {}
+  - files:
+      - '*.tsx'
+    rules:
+      '@typescript-eslint/no-unused-vars': off
+  - files:
+      - '*.spec.ts*'
+      - '*.config.js'
+    extends:
+      - plugin:jest/style
+      - plugin:jest/recommended
+      - plugin:jest-formatting/recommended
+    env:
+      jest/globals: true
+  - files:
+      - '*.spec.ts*'
+      - '*.config.js'
+      - '**/__mocks__/**/*.ts'
+      - '**/tests/**/*.ts'
+      - '**/__factories__/**/*.ts'
+    rules:
+      '@typescript-eslint/no-explicit-any': off
+      import/no-default-export: 0
+      jest/no-export: 0
