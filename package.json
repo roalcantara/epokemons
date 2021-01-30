@@ -23,7 +23,17 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "clear:cache": "rm -rf node_modules/.cache/nx && jest --clearCache",
+    "clear": "rm -rf dist tmp coverage && yarn clear:cache",
+    "purge": "yarn clear && rm -rf node_modules",
+    "reset": "yarn purge && yarn install",
+    "reset:force": "yarn purge && rm -rf ./yarn.lock && yarn",
+    "build:all": "nx run-many --target=build --all",
+    "test:all": "nx run-many --target=test --all --parallel --runInBand",
+    "e2e:all": "nx run-many --target=e2e --all",
+    "lint:all": "nx run-many --target=lint --all --parallel",
+    "lint:time": "TIMING=1 nx lint"
   },
   "engines": {
     "node": "^14.x",
