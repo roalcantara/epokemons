@@ -36,6 +36,9 @@
     },
     "poc-shared-pg": {
       "tags": []
+    },
+    "poc-shared-elastic": {
+      "tags": []
     }
   }
 }

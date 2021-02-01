@@ -135,6 +135,27 @@
           }
         }
       }
+    },
+    "poc-shared-elastic": {
+      "root": "libs/shared/elastic",
+      "sourceRoot": "libs/shared/elastic/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/elastic/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/elastic"],
+          "options": {
+            "jestConfig": "libs/shared/elastic/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

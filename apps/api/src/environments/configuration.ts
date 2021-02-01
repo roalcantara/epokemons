@@ -13,5 +13,9 @@ export const configuration = () => ({
     user: process.env.DB_USR,
     pwd: process.env.DB_PWD,
     max: Number(process.env.DB_POOL_MAX)
+  },
+  el: {
+    host: process.env.EL_HOST,
+    port: Number(process.env.EL_PORT)
   }
 })
