@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@env": ["apps/api/src/environments/index.ts"],
+      "@poc/shared/accio": ["libs/shared/accio/src/index.ts"]
+    },
     "allowJs": true,
     "pretty": true,
     "alwaysStrict": true,

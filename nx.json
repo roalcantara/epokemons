@@ -24,6 +24,9 @@
   "projects": {
     "api": {
       "tags": []
+    },
+    "poc-shared-accio": {
+      "tags": []
     }
   }
 }
