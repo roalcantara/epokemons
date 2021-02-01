@@ -4,6 +4,11 @@ import { Observable } from 'rxjs'
 import { map, switchMap } from 'rxjs/operators'
 import { PgConnection } from './pg.connection'
 
+export type Event<T> = {
+  name: string
+  data: T
+}
+
 @Injectable()
 export class PgRepository<T> {
   constructor(private conn: PgConnection) {}
@@ -22,6 +27,25 @@ export class PgRepository<T> {
     )
 
   insert = (queryTextOrConfig: string) => this.query(queryTextOrConfig)
+
+  listen = (event: string) =>
+    this.conn.connect().pipe(
+      switchMap(
+        client =>
+          new Observable<Event<T>>(observer => {
+            client
+              .on('notification', msg =>
+                observer.next({
+                  name: event,
+                  data: JSON.parse(msg?.payload ?? '') as T
+                })
+              )
+              .on('error', observer.error)
+              .on('end', observer.complete)
+              .query(`LISTEN ${event}`)
+          })
+      )
+    )
 
   select = (table: string) =>
     this.query(`SELECT * FROM ${table}`).pipe(

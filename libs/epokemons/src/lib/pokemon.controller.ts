@@ -50,4 +50,13 @@ export class PokemonController {
   async import(@Param('id') id: number): Promise<Pokemon> {
     return this.service.importBy(id).toPromise()
   }
+
+  @Get('listen')
+  async listen(): Promise<string> {
+    this.service.onCreateIndexDocument().subscribe(instance => {
+      console.log(`[GET /listen]: Document Indexed! ✔✔`, { instance })
+    })
+
+    return `Start listening for "${this.service.repository.event}" notifications ✔`
+  }
 }

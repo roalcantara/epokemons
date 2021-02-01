@@ -49,6 +49,14 @@
             "jestConfig": "apps/api/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "listen": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "color": true,
+            "envFile": "./.env",
+            "commands": ["curl $APP_HOST:$APP_PORT/api/listen"]
+          }
         }
       }
     },
