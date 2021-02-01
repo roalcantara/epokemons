@@ -39,6 +39,9 @@
     },
     "poc-shared-elastic": {
       "tags": []
+    },
+    "poc-shared-health": {
+      "tags": []
     }
   }
 }

@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common'
+import { TerminusModule } from '@nestjs/terminus'
 import { AccioModule } from '@poc/shared/accio'
-import { ElasticRepository, ElasticConnection } from './lib'
+import {
+  ElasticRepository,
+  ElasticConnection,
+  ElasticHealthService
+} from './lib'
 
 @Module({
-  imports: [AccioModule],
-  providers: [ElasticConnection, ElasticRepository],
-  exports: [ElasticConnection, ElasticRepository]
+  imports: [AccioModule, TerminusModule],
+  providers: [ElasticConnection, ElasticRepository, ElasticHealthService],
+  exports: [ElasticConnection, ElasticRepository, ElasticHealthService]
 })
 export class ElasticModule {}

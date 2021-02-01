@@ -20,7 +20,8 @@
       "@epokemons": ["libs/epokemons/src/index.ts"],
       "@epokemons/domain": ["libs/epokemons/domain/src/index.ts"],
       "@poc/shared/pg": ["libs/shared/pg/src/index.ts"],
-      "@poc/shared/elastic": ["libs/shared/elastic/src/index.ts"]
+      "@poc/shared/elastic": ["libs/shared/elastic/src/index.ts"],
+      "@poc/shared/health": ["libs/shared/health/src/index.ts"]
     },
     "allowJs": true,
     "pretty": true,
