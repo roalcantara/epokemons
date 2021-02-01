@@ -114,6 +114,27 @@
           }
         }
       }
+    },
+    "poc-shared-pg": {
+      "root": "libs/shared/pg",
+      "sourceRoot": "libs/shared/pg/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/pg/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/pg"],
+          "options": {
+            "jestConfig": "libs/shared/pg/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

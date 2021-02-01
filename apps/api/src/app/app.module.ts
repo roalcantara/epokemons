@@ -3,6 +3,7 @@ import { EpokemonsModule } from '@epokemons'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AccioModule } from '@poc/shared/accio'
+import { PgModule } from '@poc/shared/pg'
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { AccioModule } from '@poc/shared/accio'
       load: [configuration]
     }),
     AccioModule,
+    PgModule,
     EpokemonsModule
   ]
 })

@@ -4,4 +4,5 @@ module.exports = {
     '<rootDir>/libs/shared/accio',
     '<rootDir>/libs/epokemons',
     '<rootDir>/libs/epokemons/domain',
+    '<rootDir>/libs/shared/pg',
 }

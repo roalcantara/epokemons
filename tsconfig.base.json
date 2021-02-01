@@ -18,7 +18,8 @@
       "@env": ["apps/api/src/environments/index.ts"],
       "@poc/shared/accio": ["libs/shared/accio/src/index.ts"],
       "@epokemons": ["libs/epokemons/src/index.ts"],
-      "@epokemons/domain": ["libs/epokemons/domain/src/index.ts"]
+      "@epokemons/domain": ["libs/epokemons/domain/src/index.ts"],
+      "@poc/shared/pg": ["libs/shared/pg/src/index.ts"]
     },
     "allowJs": true,
     "pretty": true,

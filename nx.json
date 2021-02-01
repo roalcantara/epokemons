@@ -33,6 +33,9 @@
     },
     "epokemons-domain": {
       "tags": []
+    },
+    "poc-shared-pg": {
+      "tags": []
     }
   }
 }
