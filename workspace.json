@@ -72,6 +72,48 @@
           }
         }
       }
+    },
+    "epokemons": {
+      "root": "libs/epokemons",
+      "sourceRoot": "libs/epokemons/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/epokemons/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/epokemons"],
+          "options": {
+            "jestConfig": "libs/epokemons/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "epokemons-domain": {
+      "root": "libs/epokemons/domain",
+      "sourceRoot": "libs/epokemons/domain/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/epokemons/domain/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/epokemons/domain"],
+          "options": {
+            "jestConfig": "libs/epokemons/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

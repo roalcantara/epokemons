@@ -27,6 +27,12 @@
     },
     "poc-shared-accio": {
       "tags": []
+    },
+    "epokemons": {
+      "tags": []
+    },
+    "epokemons-domain": {
+      "tags": []
     }
   }
 }

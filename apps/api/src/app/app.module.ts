@@ -1,4 +1,5 @@
 import { configuration } from '@env'
+import { EpokemonsModule } from '@epokemons'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AccioModule } from '@poc/shared/accio'
@@ -9,7 +10,8 @@ import { AccioModule } from '@poc/shared/accio'
       isGlobal: true,
       load: [configuration]
     }),
-    AccioModule
+    AccioModule,
+    EpokemonsModule
   ]
 })
 export class AppModule {}
