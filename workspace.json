@@ -88,6 +88,24 @@
             "cwd": "./",
             "commands": ["docker container stop $APP_CONTAINER"]
           }
+        },
+        "up": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "color": true,
+            "envFile": "./.env",
+            "cwd": "./",
+            "commands": ["docker-compose up --build -V"]
+          }
+        },
+        "down": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "color": true,
+            "envFile": "./.env",
+            "cwd": "./",
+            "commands": ["docker-compose down -v"]
+          }
         }
       }
     },
