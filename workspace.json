@@ -57,6 +57,37 @@
             "envFile": "./.env",
             "commands": ["curl $APP_HOST:$APP_PORT/api/listen"]
           }
+        },
+        "docker-build": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "color": true,
+            "envFile": "./.env",
+            "cwd": "./",
+            "commands": [
+              "docker build --no-cache --tag roalcantara/epokemons:{args.v} ."
+            ]
+          }
+        },
+        "docker-run": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "color": true,
+            "envFile": "./.env",
+            "cwd": "./",
+            "commands": [
+              "docker run -it -p $APP_PORT:$APP_PORT -v `pwd`:/app -v nodemodules:/app/node_modules --name $APP_CONTAINER roalcantara/epokemons:{args.v}"
+            ]
+          }
+        },
+        "docker-stop": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "color": true,
+            "envFile": "./.env",
+            "cwd": "./",
+            "commands": ["docker container stop $APP_CONTAINER"]
+          }
         }
       }
     },
