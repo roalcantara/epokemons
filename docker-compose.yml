@@ -19,10 +19,13 @@ services:
     environment:
       NODE_ENV: development
       DB_HOST: ${DB_CONTAINER}
+      EL_HOST: ${EL_CONTAINER}
     links:
       - postgres
+      - elasticsearch
     depends_on:
       - postgres
+      - elasticsearch
   postgres:
     container_name: ${DB_CONTAINER}
     image: postgres:latest
@@ -43,7 +46,32 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  elasticsearch:
+    container_name: ${EL_CONTAINER}
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    ports:
+      - ${EL_PORT}:${EL_PORT}
+    expose:
+      - ${EL_PORT}
+    environment:
+      node.name: ${EL_CONTAINER}
+      cluster.name: es-docker-cluster
+      bootstrap.memory_lock: 'true'
+      discovery.type: single-node
+      ES_JAVA_OPTS: '-Xms512m -Xmx512m'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - eldata:/usr/share/elasticsearch/data
+    healthcheck:
+      test: curl -f '${EL_HOST}:${EL_PORT}' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   nodemodules: {}
   pgdata:
+  eldata:
