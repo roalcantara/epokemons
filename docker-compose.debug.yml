@@ -20,6 +20,31 @@ services:
     command: ['node', '--inspect=0.0.0.0:9229', 'index.js']
     environment:
       NODE_ENV: development
+      DB_HOST: ${DB_CONTAINER}
+    links:
+      - postgres
+    depends_on:
+      - postgres
+  postgres:
+    container_name: ${DB_CONTAINER}
+    image: postgres:latest
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    expose:
+      - ${DB_PORT}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${DB_PWD}
+      POSTGRES_USER: ${DB_USR}
+      POSTGRES_DB: ${DB_DATABASE}
+      PG_DATA: ${DB_CONTAINER_DATA}
+    healthcheck:
+      test: pg_isready -U ${DB_USR} || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   nodemodules: {}
+  pgdata:
