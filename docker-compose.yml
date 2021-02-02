@@ -31,6 +31,7 @@ services:
     expose:
       - ${DB_PORT}
     volumes:
+      - ./tools/scripts/sql:/docker-entrypoint-initdb.d/
       - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: ${DB_PWD}
