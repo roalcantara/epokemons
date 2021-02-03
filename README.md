@@ -52,6 +52,9 @@ A simple multi-containerized [Docker][11] application sample with [NestJS][6], [
 
   This project can be ran using [Docker Compose][20], which ensures that everything it depends on, like the aforementioned external services, is created during the start process.
 
+  > These steps can also be followed via **[REST CLIENT][31]** with the file
+  > [apps/api/api.rest](apps/api/api.rest)
+
    1. **Run the containerized app**
 
       ```sh
@@ -308,3 +311,4 @@ Visit the [Nx Documentation](https://nx.dev) to learn more.
 [28]: https://nx.dev/latest/angular/tutorial/01-create-application
 [29]: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 [30]: https://medium.com/javascript-in-plain-english/dockerize-your-development-environment-in-node-js-c64de51c540c
+[31]: https://marketplace.visualstudio.com/items?itemName=humao.rest-client

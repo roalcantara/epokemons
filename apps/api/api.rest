@@ -1,0 +1,104 @@
+## REST Client for Visual Studio Code
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+@hostname = localhost
+@port = 3333
+@host = {{hostname}}:{{port}}/api
+@contentType = application/json
+@portEL = 9200
+@hostEL = {{hostname}}:{{portEL}}
+@index = pokemons
+@id = 1
+
+#### ENSURE that the environment is up and running
+  # Given I have Docker properly installed
+  # And I have ran `docker-compose up --build -V`
+  # When I check the api health
+  # Then all services must be up and running
+GET http://{{host}}/health
+
+### READ all records from the database
+  # Given that the app is up and running
+  # When I read all records on the database
+  # Then the API returns all records on the database
+GET http://{{host}}/{{index}}
+
+### READ all documents from elasticsearch
+  # Given that the app is up and running
+  # And no documents have been indexed on elasticsearch
+  # When I read all documents on the elasticsearch
+  # Then the API returns 500 (Internal server error)
+GET http://{{host}}/search
+
+### Start Listenning records creations
+  # Given that no documents have had been created
+  # When request the API to start listening
+  # Then the API returns 'ok'
+  # And the API start listening the database notifications
+GET http://{{host}}/listen
+
+### CREATE the record :id
+  # Given that the API is listening database notifications
+  # When I request the creation of the record :id
+  # Then the record :id is inserted on the database
+POST http://{{host}}/{{index}}/{{id}}
+
+### READ the record :id from database
+  # Given that the API is listening database notifications
+  # And that the record :id have been created
+  # When I read the record :id from the database
+  # Then I see the record :id
+GET http://{{host}}/{{index}}/{{id}}
+
+### READ the document :id from elasticsearch
+  # Given that the API is listening database notifications
+  # And that the record :id have been created
+  # When I read the document :id on elasticsearch
+  # Then I see the document :id
+GET http://{{host}}/search/{{id}}
+
+################################################################################
+# ELASTICSEARCH                                                                #
+################################################################################
+
+### GET all documents
+GET http://{{hostEL}}/{{index}}/_search
+
+### CREATE a document
+POST http://{{hostEL}}/{{index}}/_doc/100
+content-type: application/json
+
+{
+  "id": 100,
+  "name": "soundproof",
+  "height": 5,
+  "weight": 104,
+  "created_at": "2021-02-04T13:31:42.843787"
+}
+
+### Query documents by term
+POST http://{{hostEL}}/{{index}}/_search
+content-type: application/json
+
+{
+  "query": {
+    "term": {
+      "name": "soundproof"
+    }
+  }
+}
+
+### GET document by :id
+GET http://{{hostEL}}/{{index}}/_doc/100
+
+### DELETE document by :id
+DELETE http://{{hostEL}}/{{index}}/_doc/100
+
+#### CHECK the running nodes
+GET http://{{hostEL}}/_cat/nodes?v=true
+
+### GET the index mapping
+GET http://{{hostEL}}/{{index}}/_mapping
+
+### DELETE an index
+DELETE http://{{hostEL}}/{{index}}
