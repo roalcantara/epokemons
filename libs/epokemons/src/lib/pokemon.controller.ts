@@ -1,17 +1,19 @@
 import {
-  ApiService,
+  PokemonService,
   Pokemon,
+  ApiService,
   PokemonRepository,
   PokemonSearchRepository
 } from '@epokemons/domain'
-import { Controller, Get, Param } from '@nestjs/common'
+import { Controller, Get, Param, Post } from '@nestjs/common'
 
 @Controller()
 export class PokemonController {
   constructor(
     private readonly api: ApiService<Pokemon>,
     private readonly repository: PokemonRepository,
-    private readonly search: PokemonSearchRepository
+    private readonly search: PokemonSearchRepository,
+    private readonly service: PokemonService
   ) {}
 
   @Get('pokeapi')
@@ -42,5 +44,10 @@ export class PokemonController {
   @Get('search/:id')
   async findById(@Param('id') id: number): Promise<Pokemon | undefined> {
     return this.search.get(id).toPromise()
+  }
+
+  @Post('pokemons/:id')
+  async import(@Param('id') id: number): Promise<Pokemon> {
+    return this.service.importBy(id).toPromise()
   }
 }
