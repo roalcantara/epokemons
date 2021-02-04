@@ -1,4 +1,6 @@
 export class Pokemon {
+  public static RESOURCE = 'pokemons'
+
   id: number
   name: string
   height: number
