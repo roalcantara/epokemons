@@ -12,8 +12,14 @@ services:
       - 9229:9229
     expose:
       - ${APP_PORT}
+    volumes:
+      - ./:/app
+      - nodemodules:/app/node_modules
     env_file:
       - .env
     command: ['node', '--inspect=0.0.0.0:9229', 'index.js']
     environment:
       NODE_ENV: development
+
+volumes:
+  nodemodules: {}

@@ -11,7 +11,13 @@ services:
       - ${APP_PORT}:${APP_PORT}
     expose:
       - ${APP_PORT}
+    volumes:
+      - ./:/app
+      - nodemodules:/app/node_modules
     env_file:
       - .env
     environment:
       NODE_ENV: development
+
+volumes:
+  nodemodules: {}
